@@ -17,19 +17,20 @@ public class SignupPanel extends JPanel {
 
     public SignupPanel(UserManager userManager, SignupListener listener) {
         setLayout(new GridBagLayout());
-        setBackground(new Color(245, 247, 250));
+        setBackground(new Color(240, 242, 245));
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
         JLabel title = new JLabel("Create Account");
-        title.setFont(title.getFont().deriveFont(Font.BOLD, 18f));
+        title.setFont(title.getFont().deriveFont(Font.BOLD, 22f));
+        title.setForeground(new Color(52, 152, 219));
 
         JPanel card = new JPanel(new GridBagLayout());
         card.setBackground(Color.WHITE);
         card.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(new Color(220, 220, 220)),
-                BorderFactory.createEmptyBorder(15, 15, 15, 15)
+                BorderFactory.createLineBorder(new Color(220, 220, 220), 1, true),
+                BorderFactory.createEmptyBorder(25, 30, 25, 30)
         ));
 
         gbc.gridx = 0;
@@ -52,9 +53,27 @@ public class SignupPanel extends JPanel {
         card.add(passwordField, gbc);
 
         JButton signupButton = new JButton("Sign Up");
+        signupButton.setBackground(new Color(46, 204, 113));
+        signupButton.setForeground(Color.WHITE);
+        signupButton.setFocusPainted(false);
+        signupButton.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 13));
+        signupButton.setBorder(BorderFactory.createEmptyBorder(10, 25, 10, 25));
+        signupButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        
         JButton backButton = new JButton("Back to Login");
+        backButton.setBackground(new Color(149, 165, 166));
+        backButton.setForeground(Color.WHITE);
+        backButton.setFocusPainted(false);
+        backButton.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 13));
+        backButton.setBorder(BorderFactory.createEmptyBorder(10, 25, 10, 25));
+        backButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
-        gbc.gridx = 1;
+        gbc.gridx = 0;
+        gbc.gridy++;
+        gbc.gridwidth = 2;
+        gbc.insets = new Insets(15, 5, 5, 5);
+        card.add(signupButton, gbc);
+        
         gbc.gridy++;
         card.add(backButton, gbc);
 
@@ -64,13 +83,6 @@ public class SignupPanel extends JPanel {
         outer.gridy = 0;
         outer.insets = new Insets(20, 20, 20, 20);
         add(card, outer);
-
-        gbc.gridx = 1;
-        gbc.gridy = 0;
-        gbc.insets = new Insets(0, 0, 0, 0);
-        gbc.fill = GridBagConstraints.NONE;
-        gbc.anchor = GridBagConstraints.NORTH;
-        add(signupButton, gbc);
 
         signupButton.addActionListener(e -> {
             String username = usernameField.getText().trim();
