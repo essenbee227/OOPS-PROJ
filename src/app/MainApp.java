@@ -21,10 +21,11 @@ public class MainApp extends JFrame {
     public MainApp() {
         setTitle("Finance & Calendar Tracker");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800, 500);
+        setSize(900, 650);
         setLocationRelativeTo(null);
+        setMinimumSize(new Dimension(800, 600));
 
-        getContentPane().setBackground(new Color(245, 247, 250));
+        getContentPane().setBackground(new Color(240, 242, 245));
 
         createCards();
         setContentPane(cards);
@@ -62,7 +63,7 @@ public class MainApp extends JFrame {
     }
 
     private void showDashboard(String username) {
-        DashboardPanel dashboard = new DashboardPanel(financeTracker, calendarManager, budgetAdjuster, username);
+        DashboardPanel dashboard = new DashboardPanel(financeTracker, calendarManager, budgetAdjuster, userManager, username);
         cards.add(dashboard, "dashboard");
         cardLayout.show(cards, "dashboard");
     }

@@ -24,6 +24,24 @@ public class UserManager {
         return user != null && user.getPassword().equals(password);
     }
 
+    public User getUser(String username) {
+        return findByUsername(username);
+    }
+
+    public void setSavingsPercentage(String username, double percentage) {
+        User user = findByUsername(username);
+        if (user != null) {
+            user.setSavingsPercentage(percentage);
+        } else {
+            throw new IllegalArgumentException("User not found");
+        }
+    }
+
+    public double getSavingsPercentage(String username) {
+        User user = findByUsername(username);
+        return user != null ? user.getSavingsPercentage() : 0.0;
+    }
+
     private User findByUsername(String username) {
         return users.stream()
                 .filter(u -> u.getUsername().equals(username))
